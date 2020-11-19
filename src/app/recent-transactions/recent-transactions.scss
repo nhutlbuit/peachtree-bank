@@ -1,5 +1,21 @@
 
 
-.container {
-   width: 60%;
+.transactions-container {
+   width: 80%;
+   background-color: white;
+   margin: 10px;
+   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+   .title {
+      background-color: #0c8397;
+      line-height: 60px;
+      text-align: center;
+      font-size: 15pt;
+      color: white;
+      vertical-align: middle !important;
+   }
+
+   .table {
+      padding: 20px;
+   }
 }

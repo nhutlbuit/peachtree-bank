@@ -3,13 +3,29 @@
 html, body {
   background-color: inherit;
   font-family: Helvetica, Arial, sans-serif, "Helvetica Neue";
-  font-size: 14px;
+  font-size: 11pt;
 
-  background: url(images/background.jpg) no-repeat center center fixed; 
+  background: url('images/background.jpg') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   background-size: 100%;
+
+
+  .main-container {
+    display: flex;
+    margin: 20px;
+    
+    .new-transfer {
+      flex: 2;
+
+    }
+
+    .recent-transactions {
+      flex: 4;
+    }
+  }
+
 }
 

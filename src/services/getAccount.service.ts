@@ -1,245 +1,231 @@
-let accounts = [
-    {
-        id: 1112890, name: 'Kevin.os', partnerId: 'Fred Dan', level: 'Level 2', currency: 'GBP', email: 'corporate@js.com', status: 'ACTIVE',
-        partnerLabelId: 'Peter Pan', statusAccount: 'pending', license: 'Curacao', credit: false, creditLimit: '',
-        address: 'United KingDom', postalCode: '10000', language: 'en', phoneNumber: '0968868300', mobile: '0968868300',
-        userName: 'nat.os', password: '1234qwer', questionnaireReceiptDate: new Date(), approvedDate: new Date(),
-        country: 'us',
-        deposits: 'Yes', withdrawals: 'No', casino: 'Yes', sportsbook: 'No', parentId: 0
-
+let transactionsHistory = [{
+    'categoryCode': '#12a580',
+    'dates': {
+        'valueDate': 1600493600000
     },
-    {
-        id: 1112891, name: 'Rob.os', partnerId: 'Fred Dan', level: 'Level 3', currency: 'VND', email: 'corporate@js.com', status: 'INACTIVE',
-        partnerLabelId: 'Peter Pan', statusAccount: 'verified', license: 'Curacao', credit: true, creditLimit: '100',
-        address: 'United KingDom', postalCode: '10000', language: 'en', phoneNumber: '0968868300', mobile: '0968868300',
-        userName: 'nat.os', password: '1234qwer', questionnaireReceiptDate: new Date(), approvedDate: new Date(),
-        country: 'vn',
-        deposits: 'Yes', withdrawals: 'No', casino: 'Yes', sportsbook: 'No', parentId: 0
+    'transaction': {
+        'amountCurrency': {
+            'amount': 5000,
+            'currencyCode': 'EUR'
+        },
+        'type': 'Salaries',
+        'creditDebitIndicator': 'CRDT'
     },
-    {
-        id: 1112892, name: 'Kenny.os', partnerId: 'Fred Dan', level: 'Level 3', currency: 'USD', email: 'corporate@js.com', status: 'ACTIVE',
-        partnerLabelId: 'Peter Pan', statusAccount: 'inactive', license: 'Curacao', credit: false, creditLimit: '',
-        address: 'United KingDom', postalCode: '10000', language: 'vn', phoneNumber: '0968868300', mobile: '0968868300',
-        userName: 'nat.os', password: '1234qwer', questionnaireReceiptDate: new Date(), approvedDate: new Date(),
-        country: 'uk',
-        deposits: 'Yes', withdrawals: 'No', casino: 'Yes', sportsbook: 'No', parentId: 0
-    },
-    {
-        id: 1112893, name: 'Ali.os', partnerId: 'Fred Dan', level: 'Level 2', currency: 'USD', email: 'corporate@js.com', status: 'INACTIVE',
-        partnerLabelId: 'Conan Huynh', statusAccount: 'pending', license: 'Curacao', credit: true, creditLimit: '10000',
-        address: 'United KingDom', postalCode: '10000', language: 'fr', phoneNumber: '0968868300', mobile: '0968868300',
-        userName: 'nat.os', password: '1234qwer', questionnaireReceiptDate: new Date(), approvedDate: new Date(),
-        country: 'us',
-        deposits: 'Yes', withdrawals: 'No', casino: 'Yes', sportsbook: 'No', parentId: 0
-    },
-    {
-        id: 1112894, name: 'Nat.os', partnerId: 'Fred Dan', level: 'Level 2', currency: 'VND', email: 'corporate@js.com', status: 'ACTIVE',
-        partnerLabelId: 'Conan Huynh', statusAccount: 'verified', license: 'Curacao', credit: false, creditLimit: '',
-        address: 'United KingDom', postalCode: '10000', language: 'vn', phoneNumber: '0968868300', mobile: '0968868300',
-        userName: 'nat.os', password: '1234qwer', questionnaireReceiptDate: new Date(), approvedDate: new Date(),
-        country: 'vn',
-        deposits: 'Yes', withdrawals: 'No', casino: 'Yes', sportsbook: 'No', parentId: 0
+    'merchant': {
+        'name': 'Backbase',
+        'accountNumber': 'SI64397745065188831'
     }
-];
-
-let directors = [
-    {
-        id: 1112890, name: 'Kevin.os', dateOfBirth: new Date(), countryOfResidence: 'Malta', idType: 'passport', idNumber: '164 465 987',
-        partnerLabelId: 'Peter PanNo1', passPort: true, nationalId: true, proofOfAddress: false, certificateOfIncumbency: false,
+}, {
+    'categoryCode': '#12a580',
+    'dates': {
+        'valueDate': 1600387200000
     },
-    {
-        id: 1112891, name: 'Rob.os', dateOfBirth: new Date(), countryOfResidence: 'Malta', idType: 'nationalID', idNumber: '165 465 987',
-        partnerLabelId: 'Peter Pan1', passPort: true, nationalID: false, proofOfAddress: false, certificateOfIncumbency: false,
+    'transaction': {
+        'amountCurrency': {
+            'amount': '82.02',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Card Payment',
+        'creditDebitIndicator': 'DBIT'
     },
-    {
-        id: 1112892, name: 'Kenny.os', dateOfBirth: new Date(), countryOfResidence: 'Malta', idType: 'proofOfAddress', idNumber: '166 465 987',
-        partnerLabelId: 'Peter Pan1', passPort: true, nationalID: false, proofOfAddress: false, certificateOfIncumbency: false,
-    },
-    {
-        id: 1112893, name: 'Ali.os', dateOfBirth: new Date(), countryOfResidence: 'Malta', idType: 'certificateOfIncumbency', idNumber: '167 465 987',
-        partnerLabelId: 'Conan Huynh', passPort: true, nationalID: false, proofOfAddress: false, certificateOfIncumbency: false,
-    },
-    {
-        id: 1112894, name: 'nat.os', dateOfBirth: new Date(), countryOfResidence: 'Malta', idType: 'passport', idNumber: '164 465 987',
-        partnerLabelId: 'Conan Huynh', passPort: true, nationalID: false, proofOfAddress: false, certificateOfIncumbency: false,
-    },
-
-];
-
-const downLines = [
-    
-    {
-        id: 1113301, name: 'Sub 01', level: '2', subGroup:'', currency: 'GBP', status: 'ACTIVE', credit: 'No', creditLimit: 'N/A',
-        userName: 'sub01.os', casino: 'YES', sportsBook: 'YES', deposits: 'NO', withdrawals: 'YES'
-    },
-
-    {
-        id: 1113302, name: 'Sub 02', level: '2', subGroup:'', currency: 'GBP', status: 'ACTIVE', credit: 'No', creditLimit: 'N/A',
-        userName: 'sub01.os', casino: 'YES', sportsBook: 'YES', deposits: 'NO', withdrawals: 'YES'
+    'merchant': {
+        'name': 'The Tea Lounge',
+        'accountNumber': 'SI64397745065188830'
     }
+}, {
+    'categoryCode': '#d51271',
+    'dates': {
+        'valueDate': '2020-09-19'
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '84.64',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Card Payment',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Texaco',
+        'accountNumber': 'SI64397745065188829'
+    }
+}, {
+    'categoryCode': '#12a580',
+    'dates': {
+        'valueDate': 1600300800000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '84.76',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Card Payment',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'The Tea Lounge',
+        'accountNumber': 'SI64397745065188828'
+    }
+}, {
+    'categoryCode': '#c12020',
+    'dates': {
+        'valueDate': 1600370800000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '22.10',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Online Transfer',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Amazon Online Store',
+        'accountNumber': 'SI64397745065188827'
+    }
+}, {
+    'categoryCode': '#c89616',
+    'dates': {
+        'valueDate': 1600214400000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '46.25',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Card Payment',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': '7-Eleven',
+        'accountNumber': 'SI64397745065188826'
+    }
+}, {
+    'categoryCode': '#e25a2c',
+    'dates': {
+        'valueDate': 1476721442000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '19.72',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Online Transfer'
+    },
+    'merchant': {
+        'name': 'H&M Online Store',
+        'accountNumber': 'SI64397745065188825'
+    }
+}, {
+    'categoryCode': '#1180aa',
+    'dates': {
+        'valueDate': '2020-09-15'
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '68.87',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Transaction',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Jerry Hildreth',
+        'accountNumber': 'SI64397745065188824'
+    }
+}, {
+    'categoryCode': '#1180aa',
+    'dates': {
+        'valueDate': 1600041600000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '52.36',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Transaction',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Lawrence Pearson',
+        'accountNumber': 'SI64397745065188823'
+    }
+}, {
+    'categoryCode': '#12a580',
+    'dates': {
+        'valueDate': 1599955200000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '75.93',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Card Payment',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Whole Foods',
+        'accountNumber': 'SI64397745065188822'
+    }
+}, {
+    'categoryCode': '#fbbb1b',
+    'dates': {
+        'valueDate': 1599868800000
+    },
+    'transaction': {
+        'amountCurrency': {
+            'amount': '142.95',
+            'currencyCode': 'EUR'
+        },
+        'type': 'Online Transfer',
+        'creditDebitIndicator': 'DBIT'
+    },
+    'merchant': {
+        'name': 'Southern Electric Company',
+        'accountNumber': 'SI64397745065188821'
+    }
+}
 ];
 
-export const getAccountListingService = async (account: any) => {
+let myBankAmount = 5824.76;
 
-    const getAccounts = (type: String) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                let result = accounts;
-                switch (type) {
-                    case 'id': {
-                        result = accounts.filter(e => e.id.toString().includes(account.value));
-                        break;
-                    }
-                    case 'name': {
-                        result = accounts.filter(e => e.name?.toUpperCase().includes(account.value?.toUpperCase()));
-                        break;
-                    }
-                    case 'partnerId':
-                        result = accounts.filter(e => e.partnerLabelId.toUpperCase().includes(account.value.toUpperCase()));
-                        break;
-                    default: {
-                        break;
-                    }
-                }
-                return resolve(result);
-            }, 1000);
-        });
-    };
-
-    return await getAccounts(account.type);
-};
-
-export const getAccountDetailService = async (account: any) => {
+export const getMyBankAmountService = async (): Promise<number> => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
-            return resolve(accounts.filter(e => e.id == account.id)[0]);
-            // return reject(new Error(''));
-        }, 4000);
+            return resolve(myBankAmount);
+        }, 1000);
     });
 };
 
-export const createAccountService = async (account: any) => {
-
-    const updateAccountSelected = (accountSelected: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                let acc = accounts.filter((e: any) => e.id != accountSelected.id);
-                if ( acc.length === accounts.length && accountSelected.level === 'Level 3') {
-                    acc = acc.map((e: any) => {
-                        if (e.id === accountSelected.parentId) {
-                            e = {...e , 'parentId': accountSelected.id};
-                        }
-                        return e;
-                    });
+export const transferBalanceService = async (amount: number, accountNumber: string) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            myBankAmount -= amount;
+            const transactions = transactionsHistory.map((e: any) => {
+                if (e.merchant.accountNumber === accountNumber) {
+                    if (e?.transaction?.creditDebitIndicator === 'DBIT') {
+                        e.transaction.amountCurrency.amount =  Number(e.transaction.amountCurrency.amount) + amount;
+                    } else {
+                        e.transaction.amountCurrency.amount =  Number(e.transaction.amountCurrency.amount) - amount;
+                    }
                 }
-                acc.push(accountSelected);
-                accounts = acc;
-                 return resolve('success');
-               // return reject(new Error(''));
-            }, 5000);
-        });
-    };
-    return await updateAccountSelected(account);
+                return e;
+            });
+            transactionsHistory = transactions;
+            return resolve({myBankAmount: myBankAmount, transactionsHistory: transactionsHistory});
+        }, 1000);
+    });
 };
 
-export const updateAccountService = async (account: any) => {
-
-    const updateAccountSelected = (accountSelected: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                const acc = accounts.filter((e: any) => e.id != accountSelected.id);
-                acc.push(accountSelected);
-                accounts = acc;
-                 return resolve('success');
-               // return reject(new Error(''));
-            }, 5000);
-        });
-    };
-    return await updateAccountSelected(account);
+export const getTransactionsHistoryService = async () => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            return resolve(transactionsHistory);
+            // return reject(new Error(''));
+        }, 1000);
+    });
 };
 
-export const getDirectorsService = async (partnerLabelId: any) => {
-
-    const getDirectorsByPartnerLabelId = (partnerLabelIdSelected: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                return resolve(directors.filter(e => e.partnerLabelId == partnerLabelIdSelected));
-            }, 5000);
-        });
-    };
-
-    return getDirectorsByPartnerLabelId(partnerLabelId);
-};
-
-export const addDirectorService = async (director: any) => {
-
-    const addDirector = (aDirector: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                directors.push(aDirector);
-                return resolve('success');
-            }, 5000);
-        });
-    };
-
-    return await addDirector(director);
-};
-
-export const updateDirectorService = async (director: any) => {
-
-    const addDirector = (aDirector: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                const direc = directors.filter((e: any) => e.id != aDirector.id);
-                direc.push(director);
-                directors = direc;
-               // return resolve('success');
-                return reject(new Error(''));
-            }, 3000);
-        });
-    };
-
-    return await addDirector(director);
-};
-
-export const deleteDirectorService = async (directorId: number) => {
-
-    const deleteDirectorSelected = (directorIdSelected: number) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                const direc = directors.filter((e: any) => e.id != directorIdSelected);
-                directors = direc;
-                // return resolve('success');
-                return reject(new Error(''));
-            }, 5000);
-        });
-    };
-    return await deleteDirectorSelected(directorId);
-};
-export const getDownLineListing = async (filter: any) => {
-
-    const getDownLines = (filter: any) => {
-        return new Promise(function (resolve, reject) {
-            setTimeout(() => {
-                let list = downLines.filter(a => matchingConditions(a, filter));
-                return resolve({viewAccount: {}, downLines: list});
-            }, 1000);
-        });
-    };
-
-    const matchingConditions  = (account: any, filter: any) => {
-       return (!filter.id || account.id.includes(filter.id)) &&
-           (!filter.subGroup || account.subGroup.includes(filter.subGroup)) &&
-           (!filter.credit || account.credit === filter.credit) &&
-           (!filter.status || account.status === filter.status) &&
-           (!filter.casino || account.casino === filter.casino) &&
-           (!filter.sportsBook || account.sportsBook === filter.sportsBook) &&
-           (!filter.deposits || account.deposits === filter.deposits) &&
-           (!filter.withdrawals || account.withdrawals === filter.withdrawals)
-    }
-
-    return await getDownLines(filter);
-};
 
 
 

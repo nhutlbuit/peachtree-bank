@@ -4,10 +4,12 @@ import './recent-transactions.scss';
 
 function RecentTransactions() {
 
-
     return (
         <>
-         <div className="container"> <Item /></div>
+            <div className='transactions-container'>
+                <div className='title'>Recent Transactions</div>
+                <div className='table'><Item /></div>
+            </div>
         </>
     );
 }
