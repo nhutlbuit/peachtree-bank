@@ -1,0 +1,15 @@
+@import '~bootstrap/scss/bootstrap';
+
+html, body {
+  background-color: inherit;
+  font-family: Helvetica, Arial, sans-serif, "Helvetica Neue";
+  font-size: 14px;
+
+  background: url(images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-size: 100%;
+}
+

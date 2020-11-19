@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "module": "esnext", // Specify module code generation
+    "moduleResolution": "node", // Resolve modules using Node.js style
+    "jsx": "react", // Allow JavaScript files to be compiled
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "skipLibCheck": true, // Skip type checking of all declaration files
+    "esModuleInterop": true, // Disables namespace imports (import * as fs from "fs") and enables CJS/AMD/UMD style imports (import fs from "fs")
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "strict": true, // Enable all strict type checking options
+    "forceConsistentCasingInFileNames": true, // Disallow inconsistently-cased references to the same file.
+    "resolveJsonModule": true,  // Include modules imported with .json extension
+    "isolatedModules": false,
+    "noEmit": true,
+    "sourceMap": true, // Generate corresponding .map file,
+    "baseUrl": "."
+  },
+  "include": [
+    "src/**/*" // *** The files TypeScript should type check ***
+  ],
+  "typeRoots": [
+    "../node_modules/@types",
+    "../@types"
+  ],
+  "exclude": ["node_modules", "build"] // *** The files to not type check ***
+}
