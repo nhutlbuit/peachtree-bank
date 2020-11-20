@@ -10,12 +10,11 @@ html, body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-size: 100%;
 
 
   .main-container {
     display: flex;
-    margin: 20px;
+    margin: 2% 10% 2% 10%;
     
     .new-transfer {
       flex: 2;
@@ -25,6 +24,10 @@ html, body {
     .recent-transactions {
       flex: 4;
     }
+  }
+
+  .modal.modal-static .modal-dialog {
+    transform: none;
   }
 
 }

@@ -5,7 +5,7 @@ import transactionsHistoryChanel from '../../../chanel/transactions-history.chan
 
 function Item() {
 
-    const [state, setState] = useState();
+    const [state, setState] = useState<any>();
 
     useLayoutEffect(() => {
         transactionsHistoryChanel.getTransactionsHistory();
@@ -30,14 +30,14 @@ function Item() {
                 <tbody>
                     {state?.transactionsHistory?.map((column: any, key: number) => (
                         <tr key={key}>
-                            <td style={{ backgroundColor: column?.categoryCode, border: column?.categoryCode, borderStyle: 'solid' }} />
-                            <td style={{ textAlign: 'center' }}>{format(new Date(column?.dates?.valueDate), 'MMM. dd')}</td>
+                            <td className='category' style={{ backgroundColor: column?.categoryCode, border: column?.categoryCode }} />
+                            <td className='transfer-date'>{format(new Date(column?.dates?.valueDate), 'MMM. dd')}</td>
                             <td ><img src={getImageName(column)} /></td>
                             <td>
-                                <div style={{ fontWeight: 'bold' }}> {column?.merchant?.name}</div>
+                                <div className='beneficiary'> {column?.merchant?.name}</div>
                                 <div> {column?.transaction?.type}</div>
                             </td>
-                    <td style={{ fontWeight: 'bold', fontSize: '13pt' }}>{column?.transaction?.creditDebitIndicator === 'DBIT' ? '+' : '-'}${column?.transaction?.amountCurrency?.amount}</td>
+                            <td className='amount'>-${column?.transaction?.amountCurrency?.amount}</td>
                         </tr>
                     ))}
                 </tbody>

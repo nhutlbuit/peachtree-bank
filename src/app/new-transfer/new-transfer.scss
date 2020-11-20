@@ -40,11 +40,14 @@
     }
 
     .footer {
+        padding: 20px;
 
         button {
             float: right;
             margin: 10px 10px 20px 0;
-            width: 150px;
+            width: 50%;
+            background-color: rgba(238, 112, 51, 1);
+            border: none;
         }
     }
 

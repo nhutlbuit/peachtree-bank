@@ -18,6 +18,23 @@ table {
                 vertical-align: middle !important;
                 padding: 0rem !important;
             }
+
+            .category {
+                border-style: solid !important;
+            }
+
+            .amount {
+                font-weight: bold;
+                font-size: 13pt;
+            }
+
+            .beneficiary {
+                font-weight: bold;
+            }
+
+            .transfer-date {
+                text-align: center;
+            }
         }
         
         tr > *:nth-child(1) {

@@ -1,0 +1,30 @@
+
+@import '../style-common.scss';
+
+
+.table-model {
+    table {
+        padding: 15px;
+       
+        border: none;
+        tbody {
+            tr {
+    
+                border: none;
+                border-bottom: 1px solid #d9edf7;
+            }
+    
+            tr > *:nth-child(1) {
+                width: 40%;
+            }
+    
+            tr > *:nth-child(2) {
+                width: fit-content;
+                float: right;
+                line-height: 60px;
+            }
+        }
+    }
+}
+
+
