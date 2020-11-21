@@ -1,5 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
 
+@font-face {
+  font-family: 'Kanit';
+  src: url('assets/fonts/Kanit-Thin.ttf') format('truetype');
+}
+
 html, body {
   background-color: inherit;
   font-family: Helvetica, Arial, sans-serif, "Helvetica Neue";
@@ -12,7 +17,7 @@ html, body {
   }
 
   .body-container {
-    background: url('images/background.jpg') no-repeat center center fixed; 
+    background: url('assets/images/background.jpg') no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

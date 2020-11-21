@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 process.env = dotenv.parsed;
@@ -21,7 +22,7 @@ module.exports = {
     vendor: VENDOR_LIBS
   },
   output: {
-    publicPath: '/corporate-account-ui/',
+    publicPath: '/peachtree-bank/',
     // the output of the webpack build will be in /build directory
     path: path.resolve(__dirname, 'build'),
     // the filename of the JS bundle will be bundle.js
@@ -119,6 +120,11 @@ module.exports = {
       minifyCSS: true,
       minifyURLs: true,
     }, }),
+    new CopyWebpackPlugin({
+      patterns:[
+        { from: './src/assets', to: 'images/[name].[ext]' }
+      ]
+    })
    // new BundleAnalyzerPlugin
   ]
 };

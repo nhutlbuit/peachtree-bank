@@ -36,15 +36,15 @@ const transactionsHistoryChanel = {
       subject.next(state);
     });
   },
-  transferBalance: (amount: number, accountNumber: string) => {
-    from(transferBalanceService(amount, accountNumber)).subscribe((result: any) => {
+  transferBalance: (amount: number, account: any) => {
+    from(transferBalanceService(amount, account)).subscribe((result: any) => {
         state = {
           ...state,
           transactionsHistory: result.transactionsHistory,
           myBank: result.myBank
         };
         subject.next(state);
-        toast.success(`Transfer to account ${accountNumber} successfully!`);
+        toast.success(`Transfer to account ${account.merchant.name} successfully!`);
     }, () => {
         toast.error('Transfer failed. Please contact admin!');
     });

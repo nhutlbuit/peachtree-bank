@@ -3,7 +3,8 @@ import { Button } from 'react-bootstrap';
 import transactionsHistoryChanel from '../../chanel/transactions-history.chanel';
 import ConfirmInformation from './model-confirm/model-confirm';
 import './new-transfer.scss';
-import arrow from '../../assets/icons/arrows.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 function NewTransfer() {
@@ -11,7 +12,6 @@ function NewTransfer() {
     const [state, setState] = useState<any>();
     const [accountName, setAccountName] = useState<string>('');
     const [accountSelected, setAccountSelected] = useState<any>();
-    const [accountNumber, setAccountNumber] = useState('');
     const [amount, setAmount] = useState('');
     const [isConfirm, setConfirm] = useState(false);
     const [checkValid, setCheckValid] = useState<any>({isValidToAccount: false, isValidAmount: false, error: ''});
@@ -43,7 +43,6 @@ function NewTransfer() {
 
         if (Object.keys(accountInput).length > 0) {
             setCheckValid({...checkValid, isValidToAccount: true, error: ''});
-            setAccountNumber(accountInput.merchant.accountNumber);
             setAccountSelected(accountInput);
         } else {
             setCheckValid({...checkValid, isValidToAccount: false, error: 'Account is not existed in Beneficiary list.'});
@@ -51,7 +50,7 @@ function NewTransfer() {
     };
 
     const handleTransfer = () => {
-        transactionsHistoryChanel.transferBalance(Number(amount), accountNumber);
+        transactionsHistoryChanel.transferBalance(Number(amount), accountSelected);
         setAccountName('');
         setAmount('');
         setConfirm(false);
@@ -75,7 +74,8 @@ function NewTransfer() {
         <>
             <div className='new-transfer-container'>
                 <div className='title'>
-                   <img src={arrow} /> Make a Transfer
+                    <FontAwesomeIcon icon={faSyncAlt} size='lg'/>
+                    Make a Transfer
                 </div>
                 <div className='body'>
                     <div> FROM ACCOUNT</div>

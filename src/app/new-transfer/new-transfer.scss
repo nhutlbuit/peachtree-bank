@@ -12,10 +12,11 @@
     .title {
         @include title-bar();
 
-        img {
+        .svg-inline--fa {
             float: left;
-            padding: 8px;
-        }
+            margin: 4%;
+            opacity: 0.7;
+         }
      }
 
     .body {

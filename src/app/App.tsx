@@ -5,9 +5,7 @@ import NewTransfer from './new-transfer/new-transfer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CONSTANT } from '../common/constants/CommonConst';
-import logo from '../assets/logo.jpg';
-import background from '../assets/background.jpg';
-
+import logo from '../assets/images/logo.jpg';
 
 const App = () => {
 

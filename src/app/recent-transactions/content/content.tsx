@@ -15,7 +15,7 @@ function Content() {
 
     const getImageName = (column: any): string => {
         const merchantName = column?.merchant?.name.toLowerCase().split(' ').join('-');
-        return `../images/${merchantName}.png`;
+        return `assets/images/icons/${merchantName}.png`;
     };
 
     return (
