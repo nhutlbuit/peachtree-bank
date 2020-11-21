@@ -84,7 +84,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]'
+              name: 'assets/images/[name].[ext]'
             }
           },
         ],
@@ -122,7 +122,7 @@ module.exports = {
     }, }),
     new CopyWebpackPlugin({
       patterns:[
-        { from: './src/assets', to: 'images/[name].[ext]' }
+        { from: './src/assets', to: 'assets' }
       ]
     })
    // new BundleAnalyzerPlugin

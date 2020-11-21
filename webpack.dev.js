@@ -86,7 +86,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name].[ext]'
+              name: 'assets/images/[name].[ext]'
             }
           },
         ],
@@ -96,7 +96,7 @@ module.exports = {
         use: {
           loader: 'url-loader',
           options: {
-            name: 'fonts/[name].[ext]'
+            name: 'assets/fonts/[name].[ext]'
           }
         },
       },
@@ -114,7 +114,7 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(),
+   // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
     new CopyWebpackPlugin({
       patterns: [

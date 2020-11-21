@@ -14,9 +14,7 @@ function RecentTransactions() {
                     <FontAwesomeIcon icon={faBriefcase} size='lg'/>
                      Recent Transactions
                 </div>
-                <div className=''>
-                    <SearchSortBar />
-                </div>
+                <SearchSortBar />
                 <div className='table'>
                     <Content />
                 </div>
