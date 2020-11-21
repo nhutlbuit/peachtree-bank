@@ -1,21 +1,20 @@
 
-@import '../style-common.scss';
-
+@import '../../shared/style-common.scss';
 
 .table-model {
     table {
         padding: 15px;
-       
         border: none;
+
         tbody {
             tr {
-    
                 border: none;
-                border-bottom: 1px solid #d9edf7;
+                border-bottom: $border-primary;
             }
     
             tr > *:nth-child(1) {
                 width: 40%;
+                font-weight: bold;
             }
     
             tr > *:nth-child(2) {

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from 'react';
-import Item from './item/item';
+import Content from './content/content';
 import './recent-transactions.scss';
 import SearchSortBar from './search-sort-bar/search-sort-bar';
 
@@ -13,7 +13,7 @@ function RecentTransactions() {
                     <SearchSortBar />
                 </div>
                 <div className='table'>
-                    <Item />
+                    <Content />
                 </div>
             </div>
         </>

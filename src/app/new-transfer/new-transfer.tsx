@@ -1,8 +1,9 @@
 import React, { useLayoutEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import transactionsHistoryChanel from '../../chanel/transactions-history.chanel';
-import ConfirmInformation from '../shared/model-confirm/model-confirm';
+import ConfirmInformation from './model-confirm/model-confirm';
 import './new-transfer.scss';
+import arrow from '../../assets/icons/arrows.png';
 
 
 function NewTransfer() {
@@ -13,7 +14,7 @@ function NewTransfer() {
     const [accountNumber, setAccountNumber] = useState('');
     const [amount, setAmount] = useState('');
     const [isConfirm, setConfirm] = useState(false);
-
+    const [checkValid, setCheckValid] = useState<any>({isValidToAccount: false, isValidAmount: false, error: ''});
 
     useLayoutEffect(() => {
         transactionsHistoryChanel.subscribe(setState);
@@ -24,15 +25,29 @@ function NewTransfer() {
         setConfirm(true);
     };
 
-    const onChangeAccountName = (event: any) => {
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter') {
+            transfer();
+         }
+    };
+
+    const onChangeAccountName = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.value;
+        let accountInput: any = {};
         state?.transactionsHistory.map((e: any) => {
             if (e.merchant.name === name) {
-                setAccountNumber(e.merchant.accountNumber);
-                setAccountSelected(e);
+                accountInput = e;
             }
         });
         setAccountName(name);
+
+        if (Object.keys(accountInput).length > 0) {
+            setCheckValid({...checkValid, isValidToAccount: true, error: ''});
+            setAccountNumber(accountInput.merchant.accountNumber);
+            setAccountSelected(accountInput);
+        } else {
+            setCheckValid({...checkValid, isValidToAccount: false, error: 'Account is not existed in Beneficiary list.'});
+        }
     };
 
     const handleTransfer = () => {
@@ -40,26 +55,43 @@ function NewTransfer() {
         setAccountName('');
         setAmount('');
         setConfirm(false);
+        setCheckValid({checkValid, isValidToAccount: false, isValidAmount: false, error: ''});
+    };
+
+    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const amountInput = e.target.value;
+        setAmount(amountInput);
+
+        if (isNaN(Number(amountInput))) {
+            setCheckValid({...checkValid, isValidAmount: false, error: 'Invalid amount.'});
+        } else if (Number(amountInput) > state.bankAmount) {
+            setCheckValid({...checkValid, isValidAmount: false, error: 'Amount can\'t greater than total balance.'});
+        } else {
+            setCheckValid({...checkValid, isValidAmount: true, error: ''});
+        }
     };
 
     return (
         <>
             <div className='new-transfer-container'>
                 <div className='title'>
-                    Make a Transfer
+                   <img src={arrow} /> Make a Transfer
                 </div>
                 <div className='body'>
                     <div> FROM ACCOUNT</div>
-                    <input type='text' placeholder={`Free Checking 4692 - $${state?.bankAmount || 0}`} readOnly/>
+                    <input type='text' placeholder={`Free Checking 4692 - $${state?.myBank?.amount || 0}`} readOnly/>
 
                     <div> TO ACCOUNT</div>
                     <input onChange={onChangeAccountName} value={accountName} type='text' placeholder='Georgia Power Electric Company'/>
 
                     <div> AMOUNT</div>
-                    <input onChange={(e) => setAmount(e.target.value)} value={amount} type='text' placeholder='$0.00'/>
+                    <input onChange={handleAmount} value={amount} type='text' placeholder='$0.00' disabled={!checkValid?.isValidToAccount}
+                    onKeyDown={handleKeyDown}/>
+
+                    {checkValid && <span className='required-msg' dangerouslySetInnerHTML= {{__html: checkValid.error}}/>}
                 </div>
                 <div className='footer'>
-                    <Button onClick={transfer}>SUBMIT</Button>
+                    <Button onClick={transfer} disabled={!(checkValid?.isValidToAccount && checkValid?.isValidAmount)}>SUBMIT</Button>
                 </div>
             </div>
 
@@ -70,7 +102,7 @@ function NewTransfer() {
                         title={ 'Confirm Information!'}
                         accountSelected= {accountSelected}
                         amount = {amount}
-                        bankAmount = {state?.bankAmount}
+                        myBank = {state?.myBank}
                     />
                 }
 

@@ -1,18 +1,16 @@
-$bg-product: #d9edf7;
-$border-table: 1px solid #E7EAF1;
+@import '../../shared/style-common.scss';
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 1px solid $bg-product;
-    background-color: white;
+    background-color: $bg-primary;
 
     tbody {
 
         tr {
-            border: $border-table;
-            height: 60px;
+            border: $border-primary;
+            height: $line-height-item;
 
             td {
                 vertical-align: middle !important;
@@ -25,7 +23,7 @@ table {
 
             .amount {
                 font-weight: bold;
-                font-size: 13pt;
+                font-size: 120%;
             }
 
             .beneficiary {
@@ -58,8 +56,8 @@ table {
         }
 
         img {
-            height: 40px;
-            width: 40px;
+            height: 30px;
+            width: 30px;
             -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
             filter: grayscale(100%);
         }

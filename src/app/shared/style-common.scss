@@ -1,71 +1,37 @@
-$active-color: #19B82A;
-$border-table: 1px solid #E7EAF1;
-$bg-product: #d9edf7;
-$selected-icon: #FF5500;
-$bg-header-table: #0c8397;
-
-$color-primary-dark: black;
+$bg-header: #0c8397;
+$bg-primary: white;
+$bg-secondary: black;
 $color-primary-light: white;
+$color-primary-dark: black;
+$bg-primary-button: rgba(238, 112, 51, 1);
 
-$bg-primary-level1: #9298A5;
-$bg-primary-level2: #dedfe1;
-$bg-primary-level3: #f4f4f4;
-$bg-primary-level4: #F8F8F9;
-$bg-primary-dark: black;
-$bg-primary-light: white;
+$border-primary: 1px solid #E7EAF1;
+$box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+$line-height-item: 50px;
 
 /********* Start Functions *********/
 
-@mixin header-panel($bg: #0372bc) {
-    background-color: $bg;
+@mixin title-bar($line-height: 40px) {
+    background-color: $bg-header;
+    line-height: $line-height;
+    text-align: center;
+    font-size: 130%;
     color: $color-primary-light;
-    padding: 5px 5px 5px 20px;
-    font-size: 16px;
-    line-height: 30px;
-    font-weight: bold;
-}
-
-.header-panel {
-    @include header-panel();
-    .header {
-        cursor: pointer;
-      }
-}
+    vertical-align: middle !important;
+ }
 
 /********* End Functions *********/
 
 
 /********* Start Extends *********/
 
-.header-table {
-    background-color: $bg-header-table;
-    font-weight: bold;
-    color: $color-primary-light;
-}
-
-.body-table {
-    background-color: $bg-primary-light;
-}
-
-.hover-row-on-table {
-    cursor: pointer;
-    background-color: #fcfbdc;
-}
-
-.custom-input-field {
-    border-color: hsl(0, 0%, 80%);
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    width: 100%;
-}
-
 /********* End Extends *********/
 
 
 /********* Start Classes Global *********/
+
 .modal-header {
-    background-color: $bg-header-table;
+    background-color: $bg-header;
     color: $color-primary-light;
     font-weight: bold;
 
@@ -74,37 +40,19 @@ $bg-primary-light: white;
     }
 }
 
+.modal.modal-static .modal-dialog {
+    transform: none;
+}
+
 .modal-footer {
     button {
         font-weight: bold;
-        width: 80px;
+        width: 25%;
     }
 }
 
-.required-field:after {
-    color: #e83200;
-    content: " *";
-}
-
-.required-input-field {
-    border-color: red !important;
-}
-
 .required-msg {
-    color: #f44336;
-    font-size: 85%;
-    position: absolute;
-    display: flex;
-}
-
-.no-record-found {
-    background-color: $bg-primary-light;
-    text-align: center !important;
-    cursor: auto;
-}
-
-.modal.modal-static .modal-dialog {
-    transform: none;
+    color: red;
 }
 
 /********* End Classes Global *********/

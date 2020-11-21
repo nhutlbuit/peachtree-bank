@@ -1,9 +1,10 @@
 import React, { useLayoutEffect, useState } from 'react';
-import './item.scss';
+import './content.scss';
 import { format } from 'date-fns';
 import transactionsHistoryChanel from '../../../chanel/transactions-history.chanel';
+import { CONSTANT } from '../../../common/constants/CommonConst';
 
-function Item() {
+function Content() {
 
     const [state, setState] = useState<any>();
 
@@ -11,13 +12,6 @@ function Item() {
         transactionsHistoryChanel.getTransactionsHistory();
         transactionsHistoryChanel.subscribe(setState);
       }, []);
-
-    const getImageName1 = async (column: any): Promise<string> => {
-        const merchantName = column?.merchant?.name.toLowerCase().split(' ').join('-');
-        const imageObj = await import(`../../../assets/icons/${merchantName}.png`);
-        const imageName = imageObj.default;
-        return imageName;
-    };
 
     const getImageName = (column: any): string => {
         const merchantName = column?.merchant?.name.toLowerCase().split(' ').join('-');
@@ -31,7 +25,7 @@ function Item() {
                     {state?.transactionsHistory?.map((column: any, key: number) => (
                         <tr key={key}>
                             <td className='category' style={{ backgroundColor: column?.categoryCode, border: column?.categoryCode }} />
-                            <td className='transfer-date'>{format(new Date(column?.dates?.valueDate), 'MMM. dd')}</td>
+                            <td className='transfer-date'>{format(new Date(column?.dates?.valueDate), CONSTANT.FORMAT_DATE)}</td>
                             <td ><img src={getImageName(column)} /></td>
                             <td>
                                 <div className='beneficiary'> {column?.merchant?.name}</div>
@@ -46,4 +40,4 @@ function Item() {
     );
 }
 
-export default Item;
+export default Content;

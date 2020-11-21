@@ -3,31 +3,34 @@
 html, body {
   background-color: inherit;
   font-family: Helvetica, Arial, sans-serif, "Helvetica Neue";
-  font-size: 11pt;
+  font-size: 9pt;
 
-  background: url('images/background.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
-
-  .main-container {
-    display: flex;
-    margin: 2% 10% 2% 10%;
-    
-    .new-transfer {
-      flex: 2;
-
-    }
-
-    .recent-transactions {
-      flex: 4;
-    }
+  .header-container {
+    padding: 1% 1% 1% 12%;
+    border-bottom: 2px solid rgba(238, 112, 51, 1);
+    min-height: 10vh;
   }
 
-  .modal.modal-static .modal-dialog {
-    transform: none;
+  .body-container {
+    background: url('images/background.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 90vh;
+
+    .main-container {
+      display: flex;
+      padding: 2% 0% 0% 0%;
+      
+      .new-transfer {
+        flex: 2;
+      }
+  
+      .recent-transactions {
+        flex: 4;
+      }
+    }
   }
 
 }

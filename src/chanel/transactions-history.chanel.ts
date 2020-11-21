@@ -1,19 +1,25 @@
+import { initialFilter } from './../common/constants/CommonConst';
 import { getMyBankAmountService, getTransactionsHistoryService, transferBalanceService } from '../services/getAccount.service';
 
 import { from, Subject } from 'rxjs';
+import { toast } from 'react-toastify';
 
 const subject = new Subject();
 const initialState = {
   transactionsHistory: [],
-  bankAmount: 0
+  myBank: {}
 };
 
 let state = initialState;
 
 const transactionsHistoryChanel = {
   subscribe: (setState: any) => subject.subscribe(setState),
-  getTransactionsHistory: () => {
-    from(getTransactionsHistoryService()).subscribe((e: any) => {
+  getTransactionsHistory: (filter?: any) => {
+    if (!filter) {
+      filter = initialFilter;
+    }
+
+    from(getTransactionsHistoryService(filter)).subscribe((e: any) => {
       state = {
         ...state,
         transactionsHistory: e
@@ -22,10 +28,10 @@ const transactionsHistoryChanel = {
     });
   },
   getMyBankAmount: () => {
-    from(getMyBankAmountService()).subscribe((amount: number) => {
+    from(getMyBankAmountService()).subscribe((myBank: any) => {
       state = {
         ...state,
-        bankAmount: amount
+        myBank: myBank
       };
       subject.next(state);
     });
@@ -35,9 +41,12 @@ const transactionsHistoryChanel = {
         state = {
           ...state,
           transactionsHistory: result.transactionsHistory,
-          bankAmount: result.myBankAmount
+          myBank: result.myBank
         };
         subject.next(state);
+        toast.success(`Transfer to account ${accountNumber} successfully!`);
+    }, () => {
+        toast.error('Transfer failed. Please contact admin!');
     });
   }
 };

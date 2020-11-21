@@ -1,76 +1,73 @@
 
+@import '../../shared/style-common.scss';
+
 .search-sort-bar-container {
 
     padding: 20px 20px 0 20px;
     display: flex;
 
     .left {
-        flex: 3;
+        flex: 4;
+        padding-left: 10px;
         input {
-            width: 100%;
+            width: 90%;
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid $bg-secondary;
         }
         input:focus {
             outline: none;
+        }
+        a {
+            cursor: pointer;
+            display: absolute;
+            margin-right: 12px;
         }
     }
 
     .between {
         flex: 1;
         text-align: center;
+
         label {
-            font-weight: bold;
-            
+            font-weight: bold;   
         }
     }
 
     .right {
         float: right;
-       
-        button {
-            background-color: white;
-            color: black;
-            border: 1px solid black;
-        }
 
         a {
-            border: 1px solid #E7EAF1;
+            border: $border-primary;
             padding: 7px;
             cursor: pointer;
 
             .fa-stack {
                 text-align: center;
                 vertical-align: middle;
-                width: 0.5rem;
+                width: 0.625rem;
              
                 .fa-caret-up {
                   position: absolute;
-                  top: 4px;
+                  top: 2px;
                 }
       
                 .fa-caret-down {
                   position: absolute;
-                  bottom: 4px;
+                  bottom: 4.5px;
                 }
             }
             .asc {
                 .fa-caret-down {
-                    text-align: center;
-                    vertical-align: middle;
+                    display: none;
                 }
-              }
+            }
         
-              .desc {
+            .desc {
                 .fa-caret-up {
-                    text-align: center;
-                    vertical-align: middle;
+                    display: none;
                 }
-              }
+            }
+            
         }
-    }
-
-   
-
-    
+    } 
 }

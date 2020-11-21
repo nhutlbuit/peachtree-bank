@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Button, Modal } from 'react-bootstrap';
 
 const ConfirmInformation = (props: any) => {
-    const { title, accountSelected, onYes, onNo, amount, bankAmount } = props;
+    const { title, accountSelected, onYes, onNo, amount, myBank } = props;
     return (
-        <Modal show={true} onHide={onNo} keyboard={false} dialogClassName='modal-dialog modal-sm' centered>
+        <Modal show={true} onHide={onNo} keyboard={false} backdrop='static' dialogClassName='modal-dialog modal-sm' centered>
             <Modal.Header closeButton>
                 <Modal.Title>
                     {title}
@@ -18,11 +18,11 @@ const ConfirmInformation = (props: any) => {
                         <tbody>
                             <tr>
                                 <td>Source Account</td>
-                                <td>Free Checking 4692</td>
+                                <td>{myBank?.account}</td>
                             </tr>
                             <tr>
                                 <td>Balance</td>
-                                <td>${bankAmount}</td>
+                                <td>${myBank?.amount}</td>
                             </tr>
                             <tr>
                                 <td>To Account</td>
@@ -55,7 +55,7 @@ ConfirmInformation.propTypes = {
     accountSelected: PropTypes.object.isRequired,
     title: PropTypes.string,
     amount: PropTypes.string,
-    bankAmount: PropTypes.number,
+    myBank: PropTypes.object,
 };
 
 export default ConfirmInformation;

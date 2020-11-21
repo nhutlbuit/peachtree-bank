@@ -12,7 +12,6 @@ ReactDOM.render(
       <App />
     </BrowserRouter>,
 
-
     rootNode
 );
 

@@ -1,42 +1,39 @@
 
+@import '../shared/style-common.scss';
+
 .new-transfer-container {
 
     width: 60%;
-    background-color: white;
-    margin: 10px 10px;
+    background-color: $bg-primary;
+    margin-right: 5%;;
     float: right;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
     .title {
-        background-color: #0c8397;
-        line-height: 40px;
-        text-align: center;
-        font-size: 15pt;
-        color: white;
-        vertical-align: middle !important;
+        @include title-bar();
+
+        img {
+            float: left;
+            padding: 8px;
+        }
      }
 
     .body {
-        
         padding: 20px;
 
         input {
             width: 100%;
             border: none;
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid $bg-secondary;
             margin-bottom: 10px;
         }
-
         input:focus {
             outline: none;
         }
-
         div {
             font-weight: bold;
-            font-size: 10pt;
             margin-bottom: 10px;
         }
-
     }
 
     .footer {
@@ -46,7 +43,7 @@
             float: right;
             margin: 10px 10px 20px 0;
             width: 50%;
-            background-color: rgba(238, 112, 51, 1);
+            background-color: $bg-primary-button;
             border: none;
         }
     }
