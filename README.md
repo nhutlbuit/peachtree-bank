@@ -3,7 +3,7 @@
 This uses some supporting plugins:
 - React Libraries (Main Platform): 'react', 'react-dom'.
 - React Router V4 (React Plugin): 'react-router', 'react-router-dom'.
-- RXJS - Reactive Extensions for JavaScript (handle side effect: asynchronous, timer, share data between components state management...
+- RXJS - Reactive Extensions for JavaScript (handle side effect: asynchronous, timer, share data between components - state management...
 - Webpack (Bundling Module support to build project): 'webpack'
 - SASS - Pre-Processor: 'sass', 'node-sass'
 - Library UI: 'react-bootstrap',
@@ -108,7 +108,7 @@ peachtree-bank
 
  <div style="page-break-before: always;"></div>
 
-## 3. Basic knowledge and how to apply to this project - chanel
+## 3. Basic knowledge and how to apply to this project - chanel - state management
   ### 3.1: Create a chanel - to share data between components - we use Subject in RXJS to emit values to be multi-casted to many Observers.
   - To define a chanel.
   ```ts
@@ -188,12 +188,12 @@ peachtree-bank
 #### View more: 
 - Using RXJS: <span style="color:blue">https://www.learnrxjs.io/</span> <br>
 
-## 6. Run project
+## 4. Run project
 1. npm run start (port 4200)
 2. Start Nodejs server (default port 4200, Can change port at the webpack devServer port).
 3. Open web browser with url: http://your_ip
 
-## 7. Note commit in project
+## 5. Note commit in project
 ### Don't commit these paths folder and file in the project. Because, they will auto generate when build<br/>
  \peachtree-bank\target<br/>
  \peachtree-bank\build<br/>
