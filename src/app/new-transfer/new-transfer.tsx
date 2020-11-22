@@ -97,7 +97,7 @@ function NewTransfer() {
                     <input onChange={onChangeAccountName} value={accountName} type='text' placeholder='Georgia Power Electric Company'/>
 
                     <div> AMOUNT</div>
-                    <input onChange={handleAmount} value={amount} type='text' placeholder='$0.00' disabled={!checkValid?.isValidToAccount}
+                    <input onChange={handleAmount} value={amount} type='text' autoFocus placeholder='$0.00' disabled={!checkValid?.isValidToAccount}
                     onKeyDown={handleKeyDown}/>
 
                     {checkValid && <span className='required-msg' dangerouslySetInnerHTML= {{__html: checkValid.error}}/>}
