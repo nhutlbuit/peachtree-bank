@@ -1,0 +1,208 @@
+# Overview libraries using in the project 🐮 
+
+This uses some supporting plugins:
+- React Libraries (Main Platform): 'react', 'react-dom'.
+- React Router V4 (React Plugin): 'react-router', 'react-router-dom'.
+- RXJS(handle side effect: asynchronous, timer, share data between components...
+- Webpack (Bundling Module support to build project): 'webpack'
+- SASS - Pre-Processor: 'sass', 'node-sass'
+- Library UI: 'react-bootstrap',
+- react-toastify.
+
+# Guideline for focusing and developing to project
+
+## 1. Using command line (CLI) in project
+
+*Note: You can 'yarn' or 'npm' to work with this project.
+
+Current time, we just use 'start' & 'build' to develop and pack modules in the project:
+
+- Build project for the production environment:
+```
+  npm build    
+  yarn build 
+```
+
+- Start project at dev environment:
+```
+  npm start
+  yarn start
+```
+
+<div style="page-break-before: always;"></div>
+
+## 2. Structure of project
+```
+peachtree-bank
+	|
+	├── README.md
+	├── package.json
+	├── public
+	├── build
+	├── src
+	│   ├── app
+	│   │   ├── App.tsx
+	│   │   ├── app.scss
+	│   │   ├── new-transfer
+	│   │   │   ├── model-confirm
+	│   │   ├── recent-transactions
+	│   │   │   ├── content
+	│   │   │   └── search-sort-bar
+	│   │   └── shared
+	│   │       └── style-common.scss
+	│   ├── assets
+	│   │   ├── fonts
+	│   │   └── images
+	│   ├── chanel
+	│   ├── common
+	│   │   ├── constants
+	│   │   ├── enums
+	│   │   └── types
+	│   ├── index.html
+	│   └── services
+	├── tsconfig.json
+	└── webpack
+
+```
+- 2.1. <b>tsconfig.json</b>:
+  <br>File configures for typescript project such as compile decorator.
+
+- 2.2. <b>package.json</b>
+  <br>File contains all configurations of project (libs-dependencies, script-task, plugins...)
+
+- 2.3. <b>build/</b> folder:
+  <br>It stores sources of project after building.
+
+- 2.4. <b>public/</b> folder:
+  <br>It stores sources (css, data-resources, fonts, images, locales) of project after building at the dev environment.  
+    
+- 2.5. <b>webpack/</b> folder:
+  <br>It includes files using to build and start project.
+
+- 2.6. <b>src/</b>
+<br>This is the main folder in project. You can develop anything in here. It separates to 7 sub-folders: <b>common/ , assets/ , chanel/, service, app, app.tsx and index.tsx file </b> 
+
+	- 2.6.1. <b>common/</b> folder
+    <br>This includes constant, enum....
+
+	- 2.6.2. <b>assets/</b> folder
+    <br>This includes images, fonts....
+
+	- 2.6.3. <b>chanel/</b> folder
+    <br>This includes data share between components.
+
+	- 2.6.4. <b>service/</b> folder
+    <br>This includes all of apis.
+  
+  	- 2.6.5. <b>app/</b> folder
+    <br>This includes ts and scss files of component group by every feature.
+
+    - - 2.6.5.1. <b>shared/</b> folder
+    <br>This includes common files, logic, component... which can re-use more than one time in project.
+
+    - 2.6.6. <b>app.tsx/</b> file
+    <br>App.tsx is a start-point to any process, and imported out of <b>index.tsx</b> to run project.
+
+     - 2.6.7 <b>index.tsx file</b>
+    <br>This is the first file called from server after running project. All threads of project will begin from here.
+
+    
+## 3. Basic knowledge and how to apply to this project - chanel
+  ### 3.1: Create a chanel - to share data between components
+  - To define a store and declare reducers
+  ```ts
+	import { initialFilter } from './../common/constants/CommonConst';
+	import { getMyBankAmountService, getTransactionsHistoryService, transferBalanceService } from '../services/getAccount.service';
+
+	import { from, Subject } from 'rxjs';
+	import { toast } from 'react-toastify';
+
+	const subject = new Subject();
+	const initialState = {
+	transactionsHistory: [],
+	myBank: {}
+	};
+
+	let state = initialState;
+
+	const transactionsHistoryChanel = {
+	subscribe: (setState: any) => subject.subscribe(setState),
+	getTransactionsHistory: (filter?: any) => {
+		if (!filter) {
+		filter = initialFilter;
+		}
+
+		from(getTransactionsHistoryService(filter)).subscribe((e: any) => {
+		state = {
+			...state,
+			transactionsHistory: e
+		};
+		subject.next(state);
+		});
+	},
+	getMyBankAmount: () => {
+		from(getMyBankAmountService()).subscribe((myBank: any) => {
+		state = {
+			...state,
+			myBank: myBank
+		};
+		subject.next(state);
+		});
+	},
+	transferBalance: (amount: number, account: any) => {
+		from(transferBalanceService(amount, account)).subscribe((result: any) => {
+			state = {
+			...state,
+			transactionsHistory: result.transactionsHistory,
+			myBank: result.myBank
+			};
+			subject.next(state);
+			toast.success(`Transfer to account ${account.merchant.name} successfully!`);
+		}, () => {
+			toast.error('Transfer failed. Please contact admin!');
+		});
+	}
+	};
+
+	export default transactionsHistoryChanel;
+
+  ```
+### 3.2: To use this chanel - we subscribe chanel to get data change. 
+  ```ts
+	import React, { useLayoutEffect, useState } from 'react';
+	import transactionsHistoryChanel from '../../../chanel/transactions-history.chanel';
+
+	function Content() {
+
+		const [state, setState] = useState<any>();
+
+		useLayoutEffect(() => {
+			transactionsHistoryChanel.getTransactionsHistory();
+			transactionsHistoryChanel.subscribe(setState);
+		}, []);
+	}
+
+	export default Content;
+
+```
+
+#### View more: 
+- Using RXJS with React: <span style="color:blue">https://www.learnrxjs.io/</span> <br>
+
+## 6. Run project
+1. npm run start (port 4200)
+2. Start Nodejs server (default port 4200, Can change port at the webpack devServer port).
+3. Open web browser with url: http://your_ip and login
+
+## 7. Note commit in project
+### Don't commit these paths folder and file in the project. Because, they will auto generate when build<br/>
+ \peachtree-bank\target<br/>
+ \peachtree-bank\build<br/>
+ \peachtree-bank\package-lock.json<br/>
+ \peachtree-bank\yarn-lock.json<br/>
+ \peachtree-bank\yarn.lock<br/>
+ \peachtree-bank\yarn-error.log<br/>
+ \peachtree-bank\debug.log<br/>
+
+
+

@@ -35,7 +35,7 @@ module.exports = {
     hot: true,
     inline: true,
     stats: 'errors-warnings',
-    port: 4400,
+    port: 4200,
     writeToDisk: true,
     disableHostCheck: true,
     lazy: false,
