@@ -26,6 +26,10 @@ const ConfirmInformation = (props: any) => {
                             </tr>
                             <tr>
                                 <td>To Account</td>
+                                <td>{accountSelected?.merchant?.accountNumber}</td>
+                            </tr>
+                            <tr>
+                                <td>Beneficiary Name</td>
                                 <td>{accountSelected?.merchant?.name}</td>
                             </tr>
                             <tr>

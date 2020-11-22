@@ -2,6 +2,7 @@ import { myBankInfo, transactionsRecent, CONSTANT, initialFilter } from './../co
 import { SortOrder } from '../common/enums/SortTypeEnum';
 
 const myBank = JSON.parse(JSON.stringify(myBankInfo));
+const transactionsHistoryOrigin = JSON.parse(JSON.stringify(transactionsRecent));
 const transactionsHistory = JSON.parse(JSON.stringify(transactionsRecent));
 
 export const getMyBankAmountService = async (): Promise<object> => {
@@ -26,6 +27,20 @@ export const transferBalanceService = async (amount: number, account: any) => {
             });
             transactionsHistory.unshift(newTransaction);
             return resolve({myBank: myBank, transactionsHistory: transactionsHistory});
+        }, CONSTANT.TIME_RESPONSE_API);
+    });
+};
+
+export const checkAccountExistedBeneficiaryListService = async (name: string) => {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
+            let accountInput: any = {};
+            transactionsHistoryOrigin.map((e: any) => {
+                if (e.merchant.name === name) {
+                    accountInput = e;
+                }
+            });
+            return resolve(accountInput);
         }, CONSTANT.TIME_RESPONSE_API);
     });
 };

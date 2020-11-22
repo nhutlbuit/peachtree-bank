@@ -54,6 +54,8 @@ $line-height-item: 50px;
 
 .required-msg {
     color: red;
+    position: absolute;
+    display: flex;
 }
 
 /********* End Classes Global *********/

@@ -3,7 +3,7 @@
 This uses some supporting plugins:
 - React Libraries (Main Platform): 'react', 'react-dom'.
 - React Router V4 (React Plugin): 'react-router', 'react-router-dom'.
-- RXJS(handle side effect: asynchronous, timer, share data between components...
+- RXJS(handle side effect: asynchronous, timer, share data between components state management...
 - Webpack (Bundling Module support to build project): 'webpack'
 - SASS - Pre-Processor: 'sass', 'node-sass'
 - Library UI: 'react-bootstrap',
@@ -187,7 +187,7 @@ peachtree-bank
 ```
 
 #### View more: 
-- Using RXJS with React: <span style="color:blue">https://www.learnrxjs.io/</span> <br>
+- Using RXJS: <span style="color:blue">https://www.learnrxjs.io/</span> <br>
 
 ## 6. Run project
 1. npm run start (port 4200)

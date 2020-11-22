@@ -1,10 +1,11 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import transactionsHistoryChanel from '../../chanel/transactions-history.chanel';
 import ConfirmInformation from './model-confirm/model-confirm';
 import './new-transfer.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { CONSTANT } from '../../common/constants/CommonConst';
 
 
 function NewTransfer() {
@@ -15,6 +16,7 @@ function NewTransfer() {
     const [amount, setAmount] = useState('');
     const [isConfirm, setConfirm] = useState(false);
     const [checkValid, setCheckValid] = useState<any>({isValidToAccount: false, isValidAmount: false, error: ''});
+    const typingTimeOutRef = useRef<any>(null);
 
     useLayoutEffect(() => {
         transactionsHistoryChanel.subscribe(setState);
@@ -31,22 +33,32 @@ function NewTransfer() {
          }
     };
 
+    useEffect(() => {
+        if (state?.accountExisted && !state?.accountExisted?.initial) {
+            if (state?.accountExisted && Object.keys(state?.accountExisted).length > 0) {
+                setCheckValid({...checkValid, isValidToAccount: true, error: ''});
+                setAccountSelected(state?.accountExisted);
+            } else {
+                setCheckValid({...checkValid, isValidToAccount: false, error: 'Account is not existed in Beneficiary list.'});
+            }
+        }
+    }, [state]);
+
     const onChangeAccountName = (event: React.ChangeEvent<HTMLInputElement>) => {
         const name = event.target.value;
-        let accountInput: any = {};
-        state?.transactionsHistory.map((e: any) => {
-            if (e.merchant.name === name) {
-                accountInput = e;
-            }
-        });
         setAccountName(name);
 
-        if (Object.keys(accountInput).length > 0) {
-            setCheckValid({...checkValid, isValidToAccount: true, error: ''});
-            setAccountSelected(accountInput);
-        } else {
-            setCheckValid({...checkValid, isValidToAccount: false, error: 'Account is not existed in Beneficiary list.'});
+        if (typingTimeOutRef.current) {
+            clearTimeout(typingTimeOutRef?.current);
         }
+
+        typingTimeOutRef.current = setTimeout(() => {
+            if (name !== '') {
+                transactionsHistoryChanel.checkAccountExistedBeneficiaryList(name);
+            } else {
+                setCheckValid({...checkValid, isValidToAccount: false, error: ''});
+            }
+        }, CONSTANT.DEBOUNCE_TIME_SEARCH);
     };
 
     const handleTransfer = () => {
@@ -96,16 +108,15 @@ function NewTransfer() {
             </div>
 
             { isConfirm &&
-                    <ConfirmInformation
-                        onNo={() => setConfirm(false)}
-                        onYes={handleTransfer}
-                        title={ 'Confirm Information!'}
-                        accountSelected= {accountSelected}
-                        amount = {amount}
-                        myBank = {state?.myBank}
-                    />
-                }
-
+                <ConfirmInformation
+                    onNo={() => setConfirm(false)}
+                    onYes={handleTransfer}
+                    title={ 'Confirm Information!'}
+                    accountSelected= {accountSelected}
+                    amount = {amount}
+                    myBank = {state?.myBank}
+                />
+            }
         </>
     );
 }
