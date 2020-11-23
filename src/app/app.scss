@@ -13,7 +13,6 @@ html, body {
   .header-container {
     padding: 1% 1% 1% 12%;
     border-bottom: 2px solid rgba(238, 112, 51, 1);
-    min-height: 10vh;
   }
 
   .body-container {
@@ -53,6 +52,13 @@ html, body {
     .new-transfer-container, .transactions-container {
       width: 100%;
       float: left;
+    }
+  }
+  .header-container {
+    min-height: 0 !important;
+
+    img {
+      width: 80%;
     }
   }
 }
@@ -136,7 +142,6 @@ html, body {
      
       padding: 0 !important;
       input {
-        width: 100% !important;
         margin-bottom: 20px;
       }
     }
