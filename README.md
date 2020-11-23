@@ -1,3 +1,10 @@
+# Why I choose reactjs lasted version instead of Angular lasted version.
+
+I can develop this app using both of the reactjs library and the Angular framework (2 frameworks js most popular) but I choose reactjs because I would like apply RXJS to reactjs app to management global state, communication between components, instead of using Mobx, RecoilJs, Redux, Redux-toolkit, Redux-thunk, Redux-saga, Redux Observable middleware. I see redux we have to config very complex and abundant code, boring code for action creation, reducer, middleware...
+
+I want to use RXJS to solve asynchronous actions, timers... and also resolve state management problem.
+RXJS we can smoothly apply in the Angular framework that I can smoothly apply in this project with chanel (I call it chanel - anyone who subscribes to the chanel will get whatever changed in this chanel).
+
 # Overview libraries using in the project 🐮 
 
 This uses some supporting plugins:
