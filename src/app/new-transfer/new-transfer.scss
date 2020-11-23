@@ -38,11 +38,11 @@
     }
 
     .footer {
-        padding: 20px;
+        display: flex;
 
         button {
-            float: right;
             margin: 10px 10px 20px 0;
+            margin-left: auto;
             width: 50%;
             background-color: $bg-primary-button;
             border: none;

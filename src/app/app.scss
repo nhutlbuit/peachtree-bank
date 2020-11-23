@@ -41,42 +41,25 @@ html, body {
 }
 
 
-@media screen and (max-width: 1440px) {
-  .white-nav-bar-container {
-      display: flex;
-      justify-content: center!important;
-  }
-}
 
 @media screen and (max-width: 1200px) {
-  .white-nav-bar-container {
-      display: flex;
-      justify-content: center!important;
-  }
-}
-
-@media screen and (max-width: 1024px) {
   .main-container {
-    display: block !important;
-    padding: 0 !important;
+
+   padding: 2% !important;
+   .new-transfer {
+    margin-right: 20px;
+   }
 
     .new-transfer-container, .transactions-container {
       width: 100%;
-      display: block;
-      margin: 0 !important;
-      padding-bottom: 5%;
-
-      button {
-        width: 25% !important;
-      }
+      float: left;
     }
   }
 }
 
 @media screen and (max-width: 960px) {
-  .white-nav-bar-container {
-      display: flex;
-      justify-content: center!important;
+  .new-transfer {
+    margin-right: 0px !important;
   }
 }
 
@@ -98,7 +81,7 @@ html, body {
   }
 }
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 768px) {
   .main-container {
     display: block !important;
     padding: 0 !important;
@@ -117,6 +100,14 @@ html, body {
 }
 
 @media screen and (max-width: 450px) {
+  .header-container {
+    min-height: 0 !important;
+
+    img {
+      width: 80%;
+    }
+  }
+
   .main-container {
     display: block !important;
     padding: 0 !important;
@@ -125,30 +116,50 @@ html, body {
       width: 100%;
       display: block;
       margin: 0 !important;
-      padding-bottom: 5%;
+      padding-bottom: 0%;
 
       button {
         width: 25% !important;
       }
+
+      .footer {
+        padding: 0;
+      }
+    }
+  }
+
+  .search-sort-bar-container {
+    display: block !important;
+
+    .left {
+      display: inline;
+     
+      padding: 0 !important;
+      input {
+        width: 100% !important;
+        margin-bottom: 20px;
+      }
+    }
+    .between {
+      margin-right: 10%;
+      display: inline;
+      text-align: left !important;
+    }
+    .right {
+      display: inline;
     }
   }
 }
 
 
 @media screen and (max-width: 320px) {
-  .main-container {
-    display: block !important;
-    padding: 0 !important;
+  .search-sort-bar-container {
 
-    .new-transfer-container, .transactions-container {
-      width: 100%;
+    .between {
       display: block;
-      margin: 0 !important;
-      padding-bottom: 5%;
-
-      button {
-        width: 25% !important;
-      }
+    }
+    .right {
+      float: none !important;
     }
   }
 }
