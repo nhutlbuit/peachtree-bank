@@ -75,7 +75,7 @@ function NewTransfer() {
 
         if (isNaN(Number(amountInput))) {
             setCheckValid({...checkValid, isValidAmount: false, error: 'Invalid amount.'});
-        } else if (Number(amountInput) > state.bankAmount) {
+        } else if (Number(amountInput) > state.myBank.amount) {
             setCheckValid({...checkValid, isValidAmount: false, error: 'Amount can\'t greater than total balance.'});
         } else {
             setCheckValid({...checkValid, isValidAmount: true, error: ''});
