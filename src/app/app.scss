@@ -63,13 +63,20 @@ html, body {
   }
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 960px) {}
+
+@media screen and (max-device-width: 960px) {
   .new-transfer {
     margin-right: 0px !important;
   }
 }
 
 @media screen and (max-width: 768px) {
+
+  .new-transfer {
+    margin-right: 0px !important;
+   }
+
   .main-container {
     display: block !important;
     padding: 0 !important;
@@ -82,25 +89,7 @@ html, body {
 
       button {
         width: 25% !important;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .main-container {
-    display: block !important;
-    padding: 0 !important;
-
-    .new-transfer-container, .transactions-container {
-      width: 100%;
-      display: block;
-      margin: 0 !important;
-      padding-bottom: 5%;
-
-      button {
-        width: 25% !important;
-      }
+      }   
     }
   }
 }
@@ -131,7 +120,23 @@ html, body {
       .footer {
         padding: 0;
       }
+      .table {
+        table {
+          
+          tr > *:nth-child(2) {
+            width: 20%;
+          }
+      
+          tr > *:nth-child(3) {
+              width: 15%;
+          }
+        }     
+      }
     }
+  }
+
+  .new-transfer {
+    margin-right: 0px !important;
   }
 
   .search-sort-bar-container {
