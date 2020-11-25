@@ -73,7 +73,7 @@ function SearchSortBar() {
     };
 
     const clearFilter = () => {
-        setSearchValue('')
+        setSearchValue('');
         setFilter({...filter, searchName: ''});
     };
 
