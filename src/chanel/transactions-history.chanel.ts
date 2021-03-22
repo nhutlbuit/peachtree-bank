@@ -5,10 +5,10 @@ import { getMyBankAmountService,
   checkAccountExistedBeneficiaryListService
 } from '../services/getAccount.service';
 
-import { from, Subject } from 'rxjs';
+import { BehaviorSubject, from, Subject } from 'rxjs';
 import { toast } from 'react-toastify';
 
-const subject = new Subject();
+
 const initialState = {
   transactionsHistory: [],
   myBank: {},
@@ -16,6 +16,7 @@ const initialState = {
 };
 
 let state = initialState;
+const subject = new BehaviorSubject(initialState);
 
 const transactionsHistoryChanel = {
   subscribe: (setState: any) => subject.subscribe(setState),
