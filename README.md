@@ -154,7 +154,7 @@ peachtree-bank
   ```
 <div style="page-break-before: always;"></div>
 
-### 3.2: To use this chanel in component - we subscribe chanel to get data whenever it's changed. 
+### 3.2: To use this chanel in a component - we subscribe the chanel to get data whenever it's changed. 
   ```ts
 	import React, { useLayoutEffect, useState } from 'react';
 	import transactionsHistoryChanel from '../../../chanel/transactions-history.chanel';
