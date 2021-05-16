@@ -44,7 +44,7 @@ function NewTransfer() {
         }
     }, [state]);
 
-    const onChangeAccountName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const onChangeAccountName = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const name = event.target.value;
         setAccountName(name);
 
@@ -69,7 +69,7 @@ function NewTransfer() {
         setCheckValid({checkValid, isValidToAccount: false, isValidAmount: false, error: ''});
     };
 
-    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>: void) => {
         const amountInput = e.target.value;
         setAmount(amountInput);
 
