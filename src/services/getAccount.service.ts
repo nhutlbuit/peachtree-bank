@@ -13,7 +13,7 @@ export const getMyBankAmountService = async (): Promise<object> => {
     });
 };
 
-export const transferBalanceService = async (amount: number, account: any) => {
+export const transferBalanceService = async (amount: number, account: any): Promise<object> => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
             myBank.amount -= amount;
@@ -31,7 +31,7 @@ export const transferBalanceService = async (amount: number, account: any) => {
     });
 };
 
-export const checkAccountExistedBeneficiaryListService = async (name: string) => {
+export const checkAccountExistedBeneficiaryListService = async (name: string): Promise<object> => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
             let accountInput: any = {};
@@ -45,7 +45,7 @@ export const checkAccountExistedBeneficiaryListService = async (name: string) =>
     });
 };
 
-export const getTransactionsHistoryService = async (filter: any) => {
+export const getTransactionsHistoryService = async (filter: any): Promise<object> => {
     return new Promise(function (resolve, reject) {
         setTimeout(() => {
 
