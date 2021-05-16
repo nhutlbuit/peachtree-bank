@@ -69,7 +69,7 @@ function NewTransfer() {
         setCheckValid({checkValid, isValidToAccount: false, isValidAmount: false, error: ''});
     };
 
-    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>: void) => {
+    const handleAmount = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const amountInput = e.target.value;
         setAmount(amountInput);
 
