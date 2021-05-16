@@ -26,11 +26,11 @@ const ConfirmInformation = (props: any) => {
                             </tr>
                             <tr>
                                 <td>To Account</td>
-                                <td>{accountSelected?.merchant?.accountNumber}</td>
+                                <td>{accountSelected?.accountNumber}</td>
                             </tr>
                             <tr>
                                 <td>Beneficiary Name</td>
-                                <td>{accountSelected?.merchant?.name}</td>
+                                <td>{accountSelected?.value}</td>
                             </tr>
                             <tr>
                                 <td>Amount</td>
