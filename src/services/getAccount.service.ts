@@ -19,7 +19,7 @@ export const transferBalanceService = async (amount: number, account: any): Prom
             myBank.amount -= amount;
             let newTransaction: any = {};
             transactionsHistory.forEach((e: any) => {
-                if (e.merchant.accountNumber === account.merchant.accountNumber) {
+                if (e.merchant.accountNumber === account.accountNumber) {
                     newTransaction = JSON.parse(JSON.stringify(e));
                     newTransaction.transaction.amountCurrency.amount = amount;
                     newTransaction.dates.valueDate = (new Date()).getTime();
