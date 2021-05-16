@@ -1,22 +1,21 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useLayoutEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
+import Select from 'react-select';
+import { toast } from 'react-toastify';
 import transactionsHistoryChanel from '../../chanel/transactions-history.chanel';
+import { CONSTANT } from '../../common/constants/CommonConst';
 import ConfirmInformation from './model-confirm/model-confirm';
 import './new-transfer.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import { CONSTANT } from '../../common/constants/CommonConst';
-
 
 function NewTransfer() {
 
     const [state, setState] = useState<any>();
-    const [accountName, setAccountName] = useState<string>('');
-    const [accountSelected, setAccountSelected] = useState<any>();
+    const [accountSelected, setAccountSelected] = useState<any>({value: ''});
     const [amount, setAmount] = useState('');
     const [isConfirm, setConfirm] = useState(false);
-    const [checkValid, setCheckValid] = useState<any>({isValidToAccount: false, isValidAmount: false, error: ''});
-    const typingTimeOutRef = useRef<any>(null);
+    const [checkValid, setCheckValid] = useState<any>({isValidAmount: false, error: ''});
 
     useLayoutEffect(() => {
         transactionsHistoryChanel.subscribe(setState);
@@ -24,46 +23,22 @@ function NewTransfer() {
     }, []);
 
     const transfer = () => {
+        if (accountSelected.value === '') {
+            toast.warning('Please select at least a bank account.');
+            return;
+        }
         setConfirm(true);
     };
 
-    const handleKeyDown = (event: any) => {
+    const handleKeyDown = (event: any): void => {
         if (event.key === 'Enter') {
             transfer();
          }
     };
 
-    useEffect(() => {
-        if (state?.accountExisted && !state?.accountExisted?.initial) {
-            if (state?.accountExisted && Object.keys(state?.accountExisted).length > 0) {
-                setCheckValid({...checkValid, isValidToAccount: true, error: ''});
-                setAccountSelected(state?.accountExisted);
-            } else {
-                setCheckValid({...checkValid, isValidToAccount: false, error: 'Account is not existed in Beneficiary list.'});
-            }
-        }
-    }, [state]);
-
-    const onChangeAccountName = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const name = event.target.value;
-        setAccountName(name);
-
-        if (typingTimeOutRef.current) {
-            clearTimeout(typingTimeOutRef?.current);
-        }
-
-        typingTimeOutRef.current = setTimeout(() => {
-            if (name !== '') {
-                transactionsHistoryChanel.checkAccountExistedBeneficiaryList(name);
-            } else {
-                setCheckValid({...checkValid, isValidToAccount: false, error: ''});
-            }
-        }, CONSTANT.DEBOUNCE_TIME_SEARCH);
-    };
-
-    const handleTransfer = () => {
+    const handleTransfer = (): void => {
         transactionsHistoryChanel.transferBalance(Number(amount), accountSelected);
-        setAccountName('');
+        setAccountSelected({value: ''});
         setAmount('');
         setConfirm(false);
         setCheckValid({checkValid, isValidToAccount: false, isValidAmount: false, error: ''});
@@ -86,6 +61,12 @@ function NewTransfer() {
         }
     };
 
+    const merchantSelected = CONSTANT.MERCHANT.filter(e => e.value === accountSelected.value);
+
+    const onSelectedMerchant = (bankSelected: any): void => {
+        setAccountSelected(bankSelected);
+    }
+
     return (
         <>
             <div className='new-transfer-container'>
@@ -94,20 +75,27 @@ function NewTransfer() {
                     Make a Transfer
                 </div>
                 <div className='body'>
-                    <div> FROM ACCOUNT</div>
-                    <input type='text' placeholder={`Free Checking 4692 - $${state?.myBank?.amount || 0}`} readOnly/>
+                    <div className='title-line'> FROM ACCOUNT</div>
+                    <input className='from-account' type='text' placeholder={`Free Checking 4692 - $${state?.myBank?.amount || 0}`} readOnly/>
 
-                    <div> TO ACCOUNT</div>
-                    <input onChange={onChangeAccountName} value={accountName} type='text' placeholder='Georgia Power Electric Company'/>
+                    <div className='title-line'> TO ACCOUNT</div>
+                    <div className='merchant'>
+                        <Select
+                        options={CONSTANT.MERCHANT}
+                        value={merchantSelected}
+                        onChange={onSelectedMerchant}
+                        name='bankName'
+                        className='merchant-select' />
+                    </div>
 
-                    <div> AMOUNT</div>
-                    <input onChange={handleAmount} value={amount} type='text' autoFocus placeholder='$0.00' disabled={!checkValid?.isValidToAccount}
+                    <div className='title-amount'> AMOUNT</div>
+                    <input className='from-account' onChange={handleAmount} value={amount} type='text' autoFocus placeholder='$0.00'
                     onKeyDown={handleKeyDown}/>
 
                     {checkValid && <span className='required-msg' dangerouslySetInnerHTML= {{__html: checkValid.error}}/>}
                 </div>
                 <div className='footer'>
-                    <Button onClick={transfer} disabled={!(checkValid?.isValidToAccount && checkValid?.isValidAmount)}>SUBMIT</Button>
+                    <Button onClick={transfer} disabled={!checkValid?.isValidAmount}>SUBMIT</Button>
                 </div>
             </div>
 
