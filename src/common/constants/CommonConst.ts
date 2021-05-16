@@ -3,7 +3,21 @@ export const CONSTANT = Object.freeze({
     TOAST_TIMEOUT: 5000,
     TIME_RESPONSE_API: 400,
     DEBOUNCE_TIME_SEARCH: 400,
-    FORMAT_DATE: 'MMM. dd'
+    FORMAT_DATE: 'MMM. dd',
+    MERCHANT: [
+        { value: '', label: 'Select a bank account', accountNumber: '' },
+        { value: 'Backbase', label: 'Backbase', accountNumber: 'SI64397745065188831' },
+        { value: 'Card Payment', label: 'Card Payment' , accountNumber: 'SI64397745065188829'},
+        { value: 'The Tea Lounge', label: 'The Tea Lounge' , accountNumber: 'SI64397745065188830'},
+        { value: 'Texaco', label: 'Texaco', accountNumber: 'SI64397745065188829' },
+        { value: 'Amazon Online Store', label: 'Amazon Online Store', accountNumber: 'SI64397745065188827' },
+        { value: '7-Eleven', label: '7-Eleven' , accountNumber: 'SI64397745065188826'},
+        { value: 'H&M Online Store', label: 'H&M Online Store' , accountNumber: 'SI64397745065188825'},
+        { value: 'Jerry Hildreth', label: 'Jerry Hildreth', accountNumber: 'SI64397745065188824' },
+        { value: 'Lawrence Pearson', label: 'Lawrence Pearson' , accountNumber: 'SI64397745065188823'},
+        { value: 'Whole Foods', label: 'Whole Foods' , accountNumber: 'SI64397745065188822'},
+        { value: 'Southern Electric Company', label: 'Southern Electric Company' , accountNumber: 'SI64397745065188821'}
+    ],
 });
 
 export const initialFilter = Object.freeze({
