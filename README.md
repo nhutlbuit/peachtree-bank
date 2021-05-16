@@ -140,11 +140,11 @@ peachtree-bank
 			}
 
 			from(getTransactionsHistoryService(filter)).subscribe((e: any) => {
-			state = {
-				...state,
-				transactionsHistory: e
-			};
-			subject.next(state);
+				state = {
+					...state,
+					transactionsHistory: e
+				};
+				subject.next(state);
 			});
 		},
 	};
