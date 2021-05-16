@@ -53,7 +53,7 @@ const transactionsHistoryChanel = {
           myBank: result.myBank
         };
         subject.next(state);
-        toast.success(`Transfer to account ${account.merchant.name} successfully!`);
+        toast.success(`Transfer to account ${account.value} successfully!`);
     }, () => {
         toast.error('Transfer failed. Please contact admin!');
     });
