@@ -50,7 +50,7 @@ export const getTransactionsHistoryService = async (filter: any): Promise<object
         setTimeout(() => {
 
             let result: any = transactionsHistory;
-            if (filter?.searchName) {
+            if (filter?.searchName) { 
                 result = transactionsHistory.filter((e: any) =>
                     (e.merchant.name.toUpperCase().includes(filter.searchName.toUpperCase())
                     || e.transaction.type.toUpperCase().includes(filter.searchName.toUpperCase())));
